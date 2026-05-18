@@ -37,6 +37,13 @@ Princípio do menor privilégio (*Least Privilege*), a estrutura deve receber os
 | `gcp-conteudo-devs@suaempresa.com` | Pasta `Operação/Conteúdo/Desenvolvimento` | `Roles/Editor` | Desenvolvedores da fábrica de conteúdo com permissão total para criar e destruir recursos em Dev. |
 
 Terraform
-providers.tf: Configura a conexão do Terraform com o Google Cloud.
-variables.tf: Define os parâmetros mutáveis (ID organização).
-main.tf: criação das pastas e projetos seguindo draw.io
+A estrutura em código declarativo utilizando Terraform. Os arquivos presentes neste repositório realizam o mapeamento automatizado dos recursos:
+providers.tf: Configuração do provedor Google Cloud.
+variables.tf: Centralização de variáveis reutilizáveis (como o ID da organização).
+main.tf: Criação hierárquica usando os recursos `google_folder` e `google_project`, com subpastas e ambientes de Produção/Teste nos respectivos escopos dinâmicamente.
+
+Aplicar estrutura em GCP, rodando comandos:
+```bash
+terraform init
+terraform plan
+terraform apply
