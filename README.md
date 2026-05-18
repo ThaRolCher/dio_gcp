@@ -1,5 +1,5 @@
-repositório para desafio DIO
-
+Repositório para desafio DIO
+PROPOSTA
 Desenhando Sua Organização de Pastas e Projetos e Grupos de Acessos na Google Cloud Platform
 Entendendo o Desafio
  Agora é a sua hora de brilhar e construir um perfil de destaque na DIO! Explore todos os conceitos explorados até aqui e replique (ou melhore, porque não?) este projeto prático. Para isso, crie seu próprio repositório e aumente ainda mais seu portfólio de projetos no GitHub, o qual pode fazer toda diferença em suas entrevistas técnicas 😎
@@ -14,4 +14,29 @@ Repositório Git
  Faça download do arquivo clicando aqui.
  Bons estudos 😉
 
- 
+ DESENVOLVIMENTO
+
+Desafio DIO: Organização de Pastas, Projetos e Grupos de Acessos na GCP
+Este repositório contém a resolução do desafio prático da trilha de Cloud Foundations da DIO. O objetivo é desenhar e documentar a estrutura hierárquica de uma organização na Google Cloud Platform (GCP), aplicando conceitos de governança, isolamento de ambientes e segurança (IAM).
+
+Diagrama da Arquitetura
+
+Modelo visual da organização em o Draw.io:
+![Arquitetura da Organização GCP](./arquitetura-gcp.png)
+
+Planejamento de Governança e Grupos de Acesso (IAM)
+Princípio do menor privilégio (*Least Privilege*), a estrutura deve receber os seguintes grupos de acessos e papéis na GCP:
+
+| Grupo de Acesso (Google Groups) | Nível de Aplicação (Escopo) | Papel Sugerido (GCP Role) | Descrição do Acesso |
+| :--- | :--- | :--- | :--- |
+| `gcp-org-admins@suaempresa.com` | Organização (`DIO Treinamentos`) | `Roles/Organization Admin` | Controle total de toda a árvore de recursos e políticas. |
+| `gcp-financas-manager@suaempresa.com` | Pasta `Financeiro` | `Roles/Viewer` ou `Billing Admin` | Visualização de recursos financeiros e controle de faturamento. |
+| `gcp-comercial-dev@suaempresa.com` | Pasta `Comercial/ERP - SAP/Teste` | `Roles/Editor` | Permissão para criar e testar recursos apenas no ambiente de homologação/teste do SAP. |
+| `gcp-comercial-prod@suaempresa.com` | Pasta `Comercial/ERP - SAP/Produção` | `Roles/Viewer` | Acesso estrito de leitura. Alterações aqui dependem de pipelines de CI/CD automáticas. |
+| `gcp-ops-cloud-admin@suaempresa.com` | Pasta `Operação/Cloud` | `Roles/Compute Admin` / `Network Admin` | Administradores da infraestrutura base e redes (VPCs, Cloud DNS, etc). |
+| `gcp-conteudo-devs@suaempresa.com` | Pasta `Operação/Conteúdo/Desenvolvimento` | `Roles/Editor` | Desenvolvedores da fábrica de conteúdo com permissão total para criar e destruir recursos em Dev. |
+
+Terraform
+providers.tf: Configura a conexão do Terraform com o Google Cloud.
+variables.tf: Define os parâmetros mutáveis (ID organização).
+main.tf: criação das pastas e projetos seguindo draw.io
