@@ -1,0 +1,9 @@
+{
+  "name": "appengine-dio-custom-scaling",
+  "version": "1.0.0",
+  "description": "Deploy do App Engine com classe personalizada e auto-scaling",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

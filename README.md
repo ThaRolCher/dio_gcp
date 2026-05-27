@@ -26,6 +26,7 @@ Abaixo está o índice de todos os desafios concluídos neste repositório. Cada
 | **05** | **Pipeline CI/CD com Cloud Build & Terraform** | Automação completa de infraestrutura como código (IaC) utilizando pipeline de CI/CD para provisionar VPC e VM na GCP via gatilhos do GitHub. | `Terraform` / `Cloud Build` / `CI/CD` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/05-pipeline-cicd-cloudbuild-terraform/README.md) |
 | **06** | **Infraestrutura de Rede VPC e VMs na GCP** | Planejamento e implantação de rede VPC customizada com subredes regionalizadas, regras de firewall e provisionamento de VM rodando Apache automatizado por Startup Script. | `VPC` / `Compute Engine` / `Apache` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/06-vpc-vm-gcp/README.md) |
 | **07** | **Instance Template, Instance Group e Load Balancer** | Criação de um modelo de instância, grupo de instâncias gerenciado (MIG) com auto-scaling e balanceador de carga (HTTP Load Balancer) clássico para alta disponibilidade. | `Compute Engine` / `Load Balancing` / `Autoscaling` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/07-templates-groups-loadbalancer/README.md) |
+| **08** | **Deploy no App Engine com Auto Scaling** | Implantação de aplicação Node.js no App Engine Standard com classe de instância personalizada F2 e escalonamento automático de recursos. | `App Engine` / `Autoscaling` / `Node.js` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/08-deploy-appengine-scaling/README.md) |
 
 ---
 
