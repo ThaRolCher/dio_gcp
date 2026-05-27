@@ -24,6 +24,7 @@ Abaixo está o índice de todos os desafios concluídos neste repositório. Cada
 | **03** | **Dashboard Personalizado e Idioma** | Customização do painel de controle da GCP, fixação de atalhos no menu de navegação e ajuste de preferências regionais/idioma. | `GCP Console` / `Preferências` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/03-dashboard-personalizado-preferencias-idioma/README.md) |
 | **04** | **Dominando o GCP Cloud Shell** | Utilização da CLI gcloud no terminal integrado, exploração do Cloud Shell Editor e do recurso de visualização web (Web Preview). | `Cloud Shell` / `gcloud CLI` / `Linux` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/04-dominando-gcp-cloud-shell/README.md) |
 | **05** | **Pipeline CI/CD com Cloud Build & Terraform** | Automação completa de infraestrutura como código (IaC) utilizando pipeline de CI/CD para provisionar VPC e VM na GCP via gatilhos do GitHub. | `Terraform` / `Cloud Build` / `CI/CD` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/05-pipeline-cicd-cloudbuild-terraform/README.md) |
+| **06** | **Infraestrutura de Rede VPC e VMs na GCP** | Planejamento e implantação de rede VPC customizada com subredes regionalizadas, regras de firewall e provisionamento de VM rodando Apache automatizado por Startup Script. | `VPC` / `Compute Engine` / `Apache` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/06-vpc-vm-gcp/README.md) |
 
 ---
 
