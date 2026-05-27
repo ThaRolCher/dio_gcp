@@ -80,10 +80,6 @@ Certifique-se de que os seguintes arquivos estejam no seu diretório de deploy:
    ```
 3. Aguarde de 1 a 2 minutos até que o Google Cloud termine o upload do código, empacotamento e ativação da aplicação.
 
-> [!NOTE]
-> *Insira abaixo o print dos logs do seu terminal Cloud Shell demonstrando a conclusão do deploy com sucesso:*
-> 
-> ![Deploy App Engine](images/01_app_engine_deploy.png)
 
 ---
 
@@ -95,10 +91,6 @@ No final do deploy, o terminal fornecerá um link semelhante a `https://[SEU_PRO
 gcloud app browse
 ```
 
-> [!NOTE]
-> *Insira abaixo o print do seu navegador exibindo a página web da sua aplicação App Engine ativa:*
-> 
-> ![Página Web da Aplicação](images/02_app_engine_site.png)
 
 ### Passo 2: Verificar a Classe de Instância e Configurações de Escalonamento
 1. No console da GCP, busque por **App Engine** > **Versões** (*Versions*).
@@ -106,10 +98,6 @@ gcloud app browse
    - A coluna **Classe de instância** (*Instance class*) deverá exibir **`F2`**.
    - Na aba de detalhes ou configurações, você poderá conferir o mínimo de 1 instância e o máximo de 3 instâncias configuradas no seu `app.yaml`.
 
-> [!NOTE]
-> *Insira abaixo o print de tela do painel do App Engine mostrando a classe de instância F2 ativa:*
-> 
-> ![Configurações da Instância no Console](images/03_app_engine_console.png)
 
 ---
 
@@ -119,4 +107,4 @@ gcloud app browse
 - [app.yaml](file:///c:/Users/Chericoni/DIO/dio_gcp/08-deploy-appengine-scaling/app.yaml) -> Arquivo de parametrização da nuvem.
 - [server.js](file:///c:/Users/Chericoni/DIO/dio_gcp/08-deploy-appengine-scaling/server.js) -> Script do servidor Node.js.
 - [package.json](file:///c:/Users/Chericoni/DIO/dio_gcp/08-deploy-appengine-scaling/package.json) -> Gerenciador de inicialização do Node.js.
-- `images/` -> Pasta reservada para os prints das suas telas.
+- `images/` -> Pasta reservada para print
