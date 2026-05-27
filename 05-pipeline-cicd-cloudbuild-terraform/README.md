@@ -56,6 +56,9 @@ gsutil versioning set on gs://bucketdio
 
 > [!TIP]
 > No laboratório atual, o bucket **`gs://bucketdio`** foi criado e configurado com versionamento com sucesso!
+> 
+> **Criação e versionamento do bucket no Cloud Shell:**
+> ![Criação do Bucket](images/5-cria%C3%A7%C3%A3o%20e%20versionamento%20de%20bucket%20no%20cloudshell.jpg)
 
 ### 2. Conceder Acesso ao Cloud Build Service Account
 Por padrão, a conta de serviço do Cloud Build possui permissões limitadas. Precisamos dar a ela os acessos necessários para criar VMs, Redes e gerenciar o bucket de state.
@@ -115,9 +118,8 @@ A pasta do desafio está dividida da seguinte forma:
 3. Você verá os 3 steps sendo executados de forma sequencial com sucesso (`tf init`, `tf plan` e `tf apply`).
 
 > [!NOTE]
-> *Insira abaixo o print de tela mostrando a execução bem sucedida da pipeline no console:*
-> 
-> ![Execução com Sucesso](images/02_execucao_pipeline.png)
+> **Execução bem sucedida do Terraform no Cloud Build:**
+> ![Execução com Sucesso](images/5-Terraform-gcp.jpg)
 
 4. Acesse **Compute Engine** > **Instâncias de VM** para comprovar que a máquina `terraform-instance` foi criada automaticamente pela pipeline!
 
