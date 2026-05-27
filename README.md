@@ -1,49 +1,39 @@
-Repositório para desafio DIO
-PROPOSTA
-Desenhando Sua Organização de Pastas e Projetos e Grupos de Acessos na Google Cloud Platform
-Entendendo o Desafio
- Agora é a sua hora de brilhar e construir um perfil de destaque na DIO! Explore todos os conceitos explorados até aqui e replique (ou melhore, porque não?) este projeto prático. Para isso, crie seu próprio repositório e aumente ainda mais seu portfólio de projetos no GitHub, o qual pode fazer toda diferença em suas entrevistas técnicas 😎
- Neste repositório, insira todos os links e arquivos necessários para seu projeto, seja um arquivo de banco de dados ou um link para o template no Figma.
- Dica: Se o expert forneceu um repositório Github, você pode dar um "fork" no repositório dele para organizar suas alterações e evoluções mantendo uma referência direta ao código-fonte original.
- Objetivo do Desafio:
-Desenhe uma organização de grupo de acessos e de uma organização utilizando o Draw.io e suba no seu github
-Repositório Git
- O Git é um conceito essencial no mercado de trabalho atualmente, por isso sempre reforçamos sua importância em nossa metodologia educacional. Por isso, todo código-fonte desenvolvido durante este conteúdo foi versionado no seguinte endereço para que você possa consultá-lo a qualquer momento:
- github.com/digitalinnovationone/trilha-gcp-fundations-terraform-projetosfolders
- Draw.io
- Faça download do arquivo clicando aqui.
- Bons estudos 😉
+# Formação Google Cloud Platform (GCP) — Desafios Práticos DIO
 
- DESENVOLVIMENTO
+Este repositório foi criado para centralizar e documentar a resolução de todos os desafios práticos propostos durante a formação em **Google Cloud Platform (GCP)** na [DIO (Digital Innovation One)](https://www.dio.me/).
 
-Desafio DIO: Organização de Pastas, Projetos e Grupos de Acessos na GCP
-Este repositório contém a resolução do desafio prático da trilha de Cloud Foundations da DIO. O objetivo é desenhar e documentar a estrutura hierárquica de uma organização na Google Cloud Platform (GCP), aplicando conceitos de governança, isolamento de ambientes e segurança (IAM).
+Aqui você encontrará a implementação em infraestrutura como código (IaC), modelagens de governança, automações e guias de laboratórios práticos executados diretamente na nuvem da Google.
 
-Diagrama da Arquitetura
+---
 
-Modelo visual da organização em o Draw.io:
-![Arquitetura da Organização GCP](./arquitetura-gcp.png)
+## 🧑‍💻 Perfil do Aluno
 
-Planejamento de Governança e Grupos de Acesso (IAM)
-Princípio do menor privilégio (*Least Privilege*), a estrutura deve receber os seguintes grupos de acessos e papéis na GCP:
+- **Nome:** [Seu Nome Aqui]
+- **GitHub:** [@SeuUsuario](https://github.com/SeuUsuario)
+- **LinkedIn:** [Seu LinkedIn](https://linkedin.com/in/SeuLink)
 
-| Grupo de Acesso (Google Groups) | Nível de Aplicação (Escopo) | Papel Sugerido (GCP Role) | Descrição do Acesso |
-| :--- | :--- | :--- | :--- |
-| `gcp-org-admins@suaempresa.com` | Organização (`DIO Treinamentos`) | `Roles/Organization Admin` | Controle total de toda a árvore de recursos e políticas. |
-| `gcp-financas-manager@suaempresa.com` | Pasta `Financeiro` | `Roles/Viewer` ou `Billing Admin` | Visualização de recursos financeiros e controle de faturamento. |
-| `gcp-comercial-dev@suaempresa.com` | Pasta `Comercial/ERP - SAP/Teste` | `Roles/Editor` | Permissão para criar e testar recursos apenas no ambiente de homologação/teste do SAP. |
-| `gcp-comercial-prod@suaempresa.com` | Pasta `Comercial/ERP - SAP/Produção` | `Roles/Viewer` | Acesso estrito de leitura. Alterações aqui dependem de pipelines de CI/CD automáticas. |
-| `gcp-ops-cloud-admin@suaempresa.com` | Pasta `Operação/Cloud` | `Roles/Compute Admin` / `Network Admin` | Administradores da infraestrutura base e redes (VPCs, Cloud DNS, etc). |
-| `gcp-conteudo-devs@suaempresa.com` | Pasta `Operação/Conteúdo/Desenvolvimento` | `Roles/Editor` | Desenvolvedores da fábrica de conteúdo com permissão total para criar e destruir recursos em Dev. |
+---
 
-Terraform
-A estrutura em código declarativo utilizando Terraform. Os arquivos presentes neste repositório realizam o mapeamento automatizado dos recursos:
-providers.tf: Configuração do provedor Google Cloud.
-variables.tf: Centralização de variáveis reutilizáveis (como o ID da organização).
-main.tf: Criação hierárquica usando os recursos `google_folder` e `google_project`, com subpastas e ambientes de Produção/Teste nos respectivos escopos dinâmicamente.
+## 📂 Portfólio de Desafios GCP
 
-Aplicar estrutura em GCP, rodando comandos:
-```bash
-terraform init
-terraform plan
-terraform apply
+Abaixo está o índice de todos os desafios concluídos neste repositório. Cada pasta possui sua própria documentação detalhada com diagramas, explicações técnicas, códigos e capturas de tela dos resultados.
+
+| # | Desafio | Descrição | Tecnologias Utilizadas | Acesso Direto |
+| :--- | :--- | :--- | :--- | :--- |
+| **01** | **Organização de Pastas e Projetos (IAM)** | Modelagem e automação de estrutura hierárquica de recursos da GCP, separando ambientes de Produção e Testes, e aplicando permissões via Google Groups. | `Terraform` / `GCP IAM` / `Draw.io` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/01-organizacao-pastas-iam/README.md) |
+| **02** | **Exportação de Billing para o BigQuery** | Configuração do fluxo automático de exportação de dados de faturamento para análise analítica e FinOps através do BigQuery. | `GCP Billing` / `BigQuery` / `SQL` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/02-exportacao-billing-bigquery/README.md) |
+
+---
+
+## 🛠️ Como navegar por este repositório
+
+1. Cada desafio está contido em sua respectiva subpasta numerada (ex: `01-...`, `02-...`).
+2. Acesse a pasta correspondente ao desafio de seu interesse para visualizar o passo a passo de execução e os recursos utilizados.
+3. Na pasta do **Desafio 01**, você encontrará os arquivos de configuração do **Terraform** (`main.tf`, `providers.tf`, `variables.tf`) que podem ser aplicados diretamente em sua conta GCP.
+4. Na pasta do **Desafio 02**, você encontrará um script de **Consultas SQL** (`queries/billing_analysis.sql`) pronto para executar em seu dataset de faturamento do BigQuery.
+
+---
+
+## 🎓 Certificação GCP
+
+Este treinamento e portfólio fazem parte da preparação técnica focada na computação em nuvem da Google Cloud, abordando governança, infraestrutura, segurança, análise de dados e otimização financeira (FinOps).
