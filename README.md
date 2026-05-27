@@ -28,6 +28,7 @@ Abaixo está o índice de todos os desafios concluídos neste repositório. Cada
 | **07** | **Instance Template, Instance Group e Load Balancer** | Criação de um modelo de instância, grupo de instâncias gerenciado (MIG) com auto-scaling e balanceador de carga (HTTP Load Balancer) clássico para alta disponibilidade. | `Compute Engine` / `Load Balancing` / `Autoscaling` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/07-templates-groups-loadbalancer/README.md) |
 | **08** | **Deploy no App Engine com Auto Scaling** | Implantação de aplicação Node.js no App Engine Standard com classe de instância personalizada F2 e escalonamento automático de recursos. | `App Engine` / `Autoscaling` / `Node.js` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/08-deploy-appengine-scaling/README.md) |
 | **09** | **Deploy de Aplicação em Container no Cloud Run** | Empacotamento de uma API FastAPI (API Mastera) em container Docker, publicação no Artifact Registry e deploy serverless no Cloud Run com auto-scaling. | `Cloud Run` / `Docker` / `FastAPI` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/09-deploy-container-cloud-run/README.md) |
+| **10** | **Cluster Kubernetes no Google Kubernetes Engine (GKE)** | Provisionamento de um cluster Kubernetes gerenciado via GKE Autopilot e implantação da aplicação baseada em microserviços (Online Boutique) e manifestos declarativos customizados. | `GKE` / `Kubernetes` / `kubectl` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/10-kubernetes-gke/README.md) |
 
 ---
 
