@@ -11,16 +11,14 @@ terraform {
   }
 
   # Configuração de Backend Remoto para armazenar o State do Terraform no GCS.
-  # Substitua 'NOME_DO_SEU_BUCKET_GCS' pelo nome do bucket que você criou na GCP.
   backend "gcs" {
-    bucket = "NOME_DO_SEU_BUCKET_GCS"
+    bucket = "bucketdio"
     prefix = "terraform/state"
   }
 }
 
 provider "google" {
-  # Substitua pelo ID do seu projeto GCP.
-  project = "SEU_PROJETO_GCP_ID"
+  project = "notebook-mastera"
   region  = var.region
   zone    = var.zone
 }

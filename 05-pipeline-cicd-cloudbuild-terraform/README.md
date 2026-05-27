@@ -37,15 +37,25 @@ graph TD
 Para que o Cloud Build consiga executar os comandos do Terraform e criar recursos na sua conta, é necessário configurar as credenciais corretas.
 
 ### 1. Criar o Bucket GCS para Armazenar o State do Terraform
-O estado (`.tfstate`) do Terraform precisa ser compartilhado e mantido de forma segura na nuvem.
-1. No Cloud Shell ou terminal local, crie um bucket (substitua pelo seu nome desejado):
-   ```bash
-   gsutil mb -l us-central1 gs://NOME_DO_SEU_BUCKET_GCS
-   ```
-2. Habilite o versionamento do bucket para segurança:
-   ```bash
-   gsutil versioning set on gs://NOME_DO_SEU_BUCKET_GCS
-   ```
+O estado (`.tfstate`) do Terraform precisa ser compartilhado e mantido de forma segura na nuvem. A Google recomenda utilizar a nova CLI `gcloud storage` em vez do utilitário legado `gsutil`.
+
+**Comandos Modernos (Recomendado pela Google):**
+```bash
+# 1. Criar o bucket na região desejada
+gcloud storage buckets create gs://NOME_DO_SEU_BUCKET --location=us-central1
+
+# 2. Habilitar o versionamento para maior segurança do estado
+gcloud storage buckets update gs://NOME_DO_SEU_BUCKET --versioning
+```
+
+**Comandos Legados (Com gsutil):**
+```bash
+gsutil mb -l us-central1 gs://NOME_DO_SEU_BUCKET
+gsutil versioning set on gs://NOME_DO_SEU_BUCKET
+```
+
+> [!TIP]
+> No laboratório atual, o bucket **`gs://bucketdio`** foi criado e configurado com versionamento com sucesso!
 
 ### 2. Conceder Acesso ao Cloud Build Service Account
 Por padrão, a conta de serviço do Cloud Build possui permissões limitadas. Precisamos dar a ela os acessos necessários para criar VMs, Redes e gerenciar o bucket de state.
@@ -67,10 +77,8 @@ A pasta do desafio está dividida da seguinte forma:
   - [variables.tf](file:///c:/Users/Chericoni/DIO/dio_gcp/05-pipeline-cicd-cloudbuild-terraform/terraform/variables.tf): Definição de variáveis como região, zona, nome de rede e centro de custo.
   - [outputs.tf](file:///c:/Users/Chericoni/DIO/dio_gcp/05-pipeline-cicd-cloudbuild-terraform/terraform/outputs.tf): Declaração das saídas (IPs interno e externo da máquina criada).
 
-> [!IMPORTANT]
-> **Antes de subir as alterações**, edite o arquivo [main.tf](file:///c:/Users/Chericoni/DIO/dio_gcp/05-pipeline-cicd-cloudbuild-terraform/terraform/main.tf):
-> 1. Substitua `NOME_DO_SEU_BUCKET_GCS` pelo nome do bucket que você criou no passo anterior.
-> 2. Substitua `SEU_PROJETO_GCP_ID` pelo ID do seu projeto GCP ativo.
+> [!NOTE]
+> Os arquivos locais de Terraform na pasta `terraform/` já foram personalizados automaticamente por mim com o seu bucket **`bucketdio`** e o seu ID de projeto GCP **`notebook-mastera`**! Nenhuma alteração manual adicional é necessária nesses arquivos.
 
 ---
 
