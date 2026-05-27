@@ -1,183 +1,110 @@
-# Desafio 06: Infraestrutura de Rede VPC e Máquinas Virtuais (VM) na GCP
+# Desafio 06: Documentação de Instância VM no Google Compute Engine
 
-[![GCP VPC](https://img.shields.io/badge/Google_Cloud-VPC_Network-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/vpc)
-[![Compute Engine](https://img.shields.io/badge/Compute_Engine-VM_Instance-669DF2?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/compute)
-[![Apache Web Server](https://img.shields.io/badge/Apache2-Web_Server-D22128?style=for-the-badge&logo=apache&logoColor=white)](https://httpd.apache.org/)
+[![GCP Compute Engine](https://img.shields.io/badge/Google_Cloud-Compute_Engine-669DF2?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/compute)
+[![Project](https://img.shields.io/badge/Project-projeto--rag--validacao-34A853?style=for-the-badge)](https://console.cloud.google.com/)
+[![Org](https://img.shields.io/badge/Org-mastera.com.br-FABC05?style=for-the-badge)](https://console.cloud.google.com/)
 
-Este desafio prático demonstra como planejar, configurar e implantar uma infraestrutura de rede isolada na GCP utilizando **VPC (Virtual Private Cloud)** customizada e provisionar **Instâncias de Máquinas Virtuais (Compute Engine)** rodando servidores web automáticos através de **Startup Scripts**.
+Esta documentação detalha a infraestrutura, as configurações de rede, armazenamento e políticas de segurança da máquina virtual **`instance-20260116-141231`** em execução no projeto **`projeto-rag-validacao`** sob a organização **`mastera.com.br`** na Google Cloud Platform (GCP).
 
 ---
 
-## 🏗️ Arquitetura da Rede e da VM
+## 🏗️ Especificações da Infraestrutura Ativa
 
-O laboratório de rede foi estruturado com base na seguinte arquitetura:
+Abaixo está o resumo arquitetural e técnico da máquina virtual ativa:
 
 ```mermaid
 graph TD
-    subgraph VPC Customizada: vpc-custom-dio
-        subgraph Subrede SP: subnet-sa [10.0.1.0/24]
-            VM[VM: vm-web-sa <br> Tags: http-server <br> IP: 10.0.1.2]
+    subgraph Projeto GCP: projeto-rag-validacao
+        subgraph Rede VPC: default
+            subgraph Subrede: default [10.128.0.0/20]
+                VM[VM: instance-20260116-141231 <br> Zona: us-central1-c <br> IP Interno: 10.128.0.5]
+            end
+            
+            FW_HTTP[Firewall: HTTP Ativado <br> Tag: http-server <br> Porta: 80] --> VM
+            FW_HTTPS[Firewall: HTTPS Ativado <br> Tag: https-server <br> Porta: 443] --> VM
         end
-        subgraph Subrede EUA: subnet-us [10.0.2.0/24]
-            direction LR
-            Empty[Espaço Reservado para Expansão]
-        end
-        FW_SSH[Firewall: allow-ssh <br> Port 22 - Ingress] -->|Aplica a todas| VM
-        FW_HTTP[Firewall: allow-http <br> Port 80 - Ingress] -->|Aplica via Tag: http-server| VM
+        
+        SA[Service Account <br> 497690216990-compute@...] -->|Identidade e Escopos| VM
+        Disk[(Boot Disk: 512 GB Balanced)] -->|Armazenamento| VM
+        Meta[Metadados: enable-osconfig = TRUE] -->|Gerenciamento| VM
     end
-    Internet[Usuário / Internet] -->|Acesso HTTP na Porta 80| VM
+    
+    User[Internet / Usuário] -->|Acesso Público: 136.119.234.111| VM
 
     style VM fill:#669df2,stroke:#333,stroke-width:2px,color:#fff
-    style FW_SSH fill:#fbbc05,stroke:#333,stroke-width:1px,color:#333
-    style FW_HTTP fill:#ea4335,stroke:#333,stroke-width:1px,color:#fff
-    style subnet-sa fill:rgba(66, 133, 244, 0.1),stroke:#4285f4,stroke-width:1px
-    style subnet-us fill:rgba(52, 168, 83, 0.1),stroke:#34a853,stroke-width:1px
+    style FW_HTTP fill:#34a853,stroke:#333,stroke-width:1px,color:#fff
+    style FW_HTTPS fill:#ea4335,stroke:#333,stroke-width:1px,color:#fff
+    style Disk fill:#7b42bc,stroke:#333,stroke-width:1px,color:#fff
 ```
 
 ---
 
-## 🌐 Conceitos Chave
+## 🛠️ Detalhamento das Configurações do Console
 
-1. **Virtual Private Cloud (VPC)**: Rede virtual global privada e isolada logicamente dentro do GCP.
-   - **VPC Custom**: Permite definir manualmente as subredes, regiões e faixas de IP (CIDR). É a melhor prática de segurança corporativa.
-2. **Firewall Rules**: Regras de segurança de rede *stateful* que permitem ou negam tráfego de entrada (ingress) ou saída (egress) baseado em tags de rede, faixas de IP ou portas de protocolos.
-3. **Compute Engine (VM)**: Serviço de infraestrutura como serviço (IaaS) para hospedar máquinas virtuais com total controle sobre o sistema operacional e discos de boot.
-4. **Startup Scripts**: Script shell executado automaticamente com privilégios de `root` no primeiro boot da VM. Útil para automatizar a instalação de pacotes e inicialização de serviços.
+### 1. Painel de Controle e Recursos de Computação (VM Instances)
+A instância está alocada na zona **`us-central1-c`** e possui um perfil de alto desempenho para processamento de dados:
+* **Tipo de Máquina**: `n2-highmem-8` (8 vCPUs virtuais Intel Broadwell e 64 GB de memória RAM).
+* **IP Externo (Efemérico)**: `136.119.234.111`.
 
----
-
-## 🚀 Passo a Passo da Configuração no Console GCP
-
-### Passo 1: Criar a Rede VPC Customizada
-1. No menu lateral do console GCP, acesse **Rede VPC** > **Redes VPC** (*VPC networks*).
-2. Clique em **Criar rede VPC** (*Create VPC network*).
-3. Configure os seguintes parâmetros:
-   - **Nome**: `vpc-custom-dio`
-   - **Modo de criação de sub-rede**: **Personalizado** (*Custom*)
-   - **Subredes a adicionar**:
-     * **Subrede 1**: Nome: `subnet-sa`, Região: `southamerica-east1` (São Paulo), Faixa de IP: `10.0.1.0/24`.
-     * **Subrede 2**: Nome: `subnet-us`, Região: `us-central1` (Iowa), Faixa de IP: `10.0.2.0/24`.
-4. Clique em **Criar** e aguarde a VPC e as duas subredes ficarem ativas.
-
-> [!NOTE]
-> *Insira abaixo o print de tela mostrando as subredes configuradas na sua VPC:*
-> 
-> ![VPC Configurada](images/01_vpc_configurada.png)
+> **Visão Geral das Instâncias no Projeto:**
+> ![Lista de VMs](images/01_lista_vms.jpg)
 
 ---
 
-### Passo 2: Configurar as Regras de Firewall
-Para permitir conexões HTTP (porta 80) e SSH (porta 22) na rede, precisamos criar duas regras de entrada:
+### 2. Configuração de Rede e Regras de Firewall
+A instância está conectada à rede padrão (`default`) e configurada para permitir tráfego da Web (HTTP e HTTPS) por meio de tags de rede associadas às regras de firewall globais do projeto:
+* **Tags de Rede Ativas**: `http-server`, `https-server`.
+* **Rede/Subrede**: `default` / `default` (região `us-central1`).
+* **IP Interno Primário**: `10.128.0.5`.
 
-1. Acesse **Rede VPC** > **Firewall**.
-2. Clique em **Criar Regra de Firewall**:
-   - **Regra 1: Permitir HTTP público via Tag**
-     * **Nome**: `allow-http`
-     * **Rede**: `vpc-custom-dio`
-     * **Destinos**: **Tags de destino especificadas** (*Specified target tags*)
-     * **Tags de destino**: `http-server`
-     * **Filtros de origem**: Intervalos de IP (*IP ranges*) -> `0.0.0.0/0` (Qualquer IP da internet)
-     * **Protocolos e portas**: Selecione **Protocolos e portas especificados** > Marque **TCP** e digite `80`.
-   - **Regra 2: Permitir SSH geral para Administração**
-     * **Nome**: `allow-ssh`
-     * **Rede**: `vpc-custom-dio`
-     * **Destinos**: **Todas as instâncias na rede** (*All instances in the network*)
-     * **Filtros de origem**: Intervalos de IP (*IP ranges*) -> `0.0.0.0/0` (ou `35.235.240.0/20` se usar o Identity-Aware Proxy - IAP)
-     * **Protocolos e portas**: Selecione **TCP** e digite `22`.
-3. Clique em **Criar**.
-
-> [!NOTE]
-> *Insira abaixo o print mostrando as regras de firewall criadas associadas à vpc-custom-dio:*
-> 
-> ![Regras de Firewall](images/02_regras_firewall.png)
+> **Configurações de Hardware e Firewall da Máquina:**
+> ![Configuração da VM e Firewall](images/02_config_maquina.jpg)
 
 ---
 
-### Passo 3: Provisionar a Máquina Virtual (Compute Engine) com o Startup Script
-1. Acesse **Compute Engine** > **Instâncias de VM** (*VM instances*).
-2. Clique em **Criar Instância** (*Create instance*).
-3. Preencha as configurações:
-   - **Nome**: `vm-web-sa`
-   - **Região**: `southamerica-east1` (São Paulo)
-   - **Zona**: `southamerica-east1-a`
-   - **Tipo de máquina**: General Purpose > E2 > `e2-micro` (ou f1-micro, mais econômica)
-   - **Disco de inicialização**: Debian GNU/Linux 11 (Bullseye)
-   - **Firewall**: Marque a caixa **Permitir tráfego HTTP** (isso adicionará automaticamente a tag de rede `http-server` necessária).
-4. Abra a aba **Opções Avançadas** (*Advanced options*):
-   - **Rede** (*Networking*):
-     * **Interfaces de rede**: Selecione a rede `vpc-custom-dio` e a subrede `subnet-sa`.
-   - **Gerenciamento** (*Management*):
-     * **Metadados** > **Script de Inicialização** (*Startup script*): Copie e cole todo o conteúdo do script [install_apache.sh](file:///c:/Users/Chericoni/DIO/dio_gcp/06-vpc-vm-gcp/scripts/install_apache.sh).
-5. Clique em **Criar**.
+### 3. Armazenamento (Storage)
+A máquina está equipada com um disco de inicialização robusto para persistência de dados e logs:
+* **Tamanho do Disco**: `512 GB`.
+* **Tipo de Disco**: Disco permanente equilibrado (*Balanced Persistent Disk*).
+* **Modo de Acesso**: Leitura/Gravação.
+* **Regra de Exclusão**: Excluir disco automaticamente quando a instância for deletada.
 
-> [!NOTE]
-> *Insira abaixo o print mostrando sua VM ativa e com o IP externo visível no console:*
-> 
-> ![Instância de VM Ativa](images/03_instancia_vm.png)
+> **Configuração de Rede e Armazenamento:**
+> ![Armazenamento e Rede](images/03_detalhes_rede.jpg)
 
 ---
 
-### Passo 4: Validar a Conectividade e Servidor Web
-1. Aguarde a VM inicializar e rodar o script (cerca de 1 a 2 minutos no primeiro boot).
-2. Copie o **IP externo** público gerado para a sua VM.
-3. Cole o IP na barra de endereços do seu navegador (exemplo: `http://34.95.130.12`).
-4. Você deverá ver a landing page personalizada estilizada com o nome da aluna **Thais Rolfsen Chericoni**, confirmando o sucesso de todo o laboratório!
+### 4. Gerenciamento de APIs, Identidade e Acesso (IAM)
+A VM utiliza a conta de serviço de computação padrão do projeto para se autenticar e interagir com outras APIs da Google Cloud de forma segura:
+* **Conta de Serviço**: `497690216990-compute@developer.gserviceaccount.com`.
+* **Escopos de Acesso às APIs do Cloud**: Permite acesso padrão com permissões de gravação no Stackdriver Monitoring e de leitura no Cloud Storage.
+* **Metadados Personalizados**: `enable-osconfig = TRUE` (Habilita o gerenciador de patches e políticas do OS Config da GCP).
 
-> [!NOTE]
-> *Insira abaixo o print de tela do seu navegador exibindo a landing page personalizada hospedada na VM:*
-> 
-> ![Página Web do Apache](images/04_pagina_apache.png)
+> **Permissões de APIs e Identidades:**
+> ![APIs e Acessos](images/04_apis_identidade.jpg)
 
----
-
-## 🛠️ Implantação Automatizada via CLI (Cloud Shell)
-
-Como alternativa rápida e profissional, você pode rodar os seguintes comandos diretamente no seu Cloud Shell para criar toda a estrutura deste laboratório de forma declarativa via CLI:
-
-```bash
-# 1. Criar a rede VPC customizada
-gcloud compute networks create vpc-custom-dio --subnet-mode=custom
-
-# 2. Criar a subrede em São Paulo
-gcloud compute networks subnets create subnet-sa \
-    --network=vpc-custom-dio \
-    --region=southamerica-east1 \
-    --range=10.0.1.0/24
-
-# 3. Criar a subrede nos EUA ( Iowa )
-gcloud compute networks subnets create subnet-us \
-    --network=vpc-custom-dio \
-    --region=us-central1 \
-    --range=10.0.2.0/24
-
-# 4. Criar a regra de firewall para HTTP (porta 80) baseada em tags
-gcloud compute firewall-rules create allow-http \
-    --network=vpc-custom-dio \
-    --allow=tcp:80 \
-    --target-tags=http-server \
-    --source-ranges=0.0.0.0/0
-
-# 5. Criar a regra de firewall para SSH (porta 22)
-gcloud compute firewall-rules create allow-ssh \
-    --network=vpc-custom-dio \
-    --allow=tcp:22 \
-    --source-ranges=0.0.0.0/0
-
-# 6. Criar a VM do Compute Engine com o startup-script do repositório
-gcloud compute instances create vm-web-sa \
-    --zone=southamerica-east1-a \
-    --subnet=subnet-sa \
-    --machine-type=e2-micro \
-    --image-family=debian-11 \
-    --image-project=debian-cloud \
-    --tags=http-server \
-    --metadata-from-file=startup-script=c/Users/Chericoni/DIO/dio_gcp/06-vpc-vm-gcp/scripts/install_apache.sh
-```
+> **Políticas de Gerenciamento e Metadados personalizados:**
+> ![Metadados e OS Config](images/05_metadados_gerenciamento.jpg)
 
 ---
 
-## 📁 Estrutura de Arquivos Deste Desafio
+## 🏁 Validação do Servidor Web
+Com as regras de firewall ativas para a tag `http-server`, qualquer servidor web instalado na VM (como Apache ou Nginx) pode ser acessado publicamente pelo IP externo:
+1. Acesse o endereço IP externo no navegador: `http://136.119.234.111`.
+2. O servidor responderá com a página inicial customizada do desafio.
 
-- [README.md](file:///c:/Users/Chericoni/DIO/dio_gcp/06-vpc-vm-gcp/README.md) -> Guia explicativo e prático (Este arquivo).
-- [scripts/install_apache.sh](file:///c:/Users/Chericoni/DIO/dio_gcp/06-vpc-vm-gcp/scripts/install_apache.sh) -> Script de provisionamento automático do servidor web.
-- `images/` -> Pasta reservada para os prints das suas telas.
+> **Página do Servidor Web Respondendo ao Acesso Externo:**
+> ![Servidor Web Ativo](images/06_servidor_web_ativo.jpg)
+
+---
+
+## 📁 Orientações de Como Organizar Seus Prints
+
+Para que as imagens apareçam corretamente no seu GitHub como documentado acima, salve os prints que você tirou do console dentro da pasta **`06-vpc-vm-gcp/images/`** renomeando-os exatamente com os seguintes nomes de arquivos:
+
+1. **`01_lista_vms.jpg`** (O print mostrando a lista de VMs com o IP externo `136.119.234.111`).
+2. **`02_config_maquina.jpg`** (O print mostrando as especificações da máquina `n2-highmem-8` e as tags `http-server`).
+3. **`03_detalhes_rede.jpg`** (O print mostrando a tabela de interfaces de rede e o disco de `512 GB`).
+4. **`04_apis_identidade.jpg`** (O print da seção de "Contas de serviço" e escopos de acesso).
+5. **`05_metadados_gerenciamento.jpg`** (O print da seção de administração e a tabela de metadados com `enable-osconfig`).
+6. **`06_servidor_web_ativo.jpg`** (Opcional: print da página web carregada no navegador ao acessar o IP `136.119.234.111`).
