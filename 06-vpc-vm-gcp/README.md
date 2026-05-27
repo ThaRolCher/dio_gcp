@@ -92,14 +92,4 @@ A VM utiliza a conta de serviço de computação padrão do projeto para se aute
 Com as regras de firewall ativas para a tag `http-server`, qualquer servidor web instalado na VM (como Apache ou Nginx) pode ser acessado publicamente pelo IP externo:
 1. Acesse o endereço IP externo no navegador: `http://136.119.234.111`.
 2. O servidor responderá com a página inicial customizada do desafio.
-
-> **Página do Servidor Web Respondendo ao Acesso Externo:**
-> ![Servidor Web Ativo](images/06_servidor_web_ativo.jpg)
-
-
-1. **`01_lista_vms.jpg`** (O print mostrando a lista de VMs com o IP externo `136.119.234.111`).
-2. **`02_config_maquina.jpg`** (O print mostrando as especificações da máquina `n2-highmem-8` e as tags `http-server`).
-3. **`03_detalhes_rede.jpg`** (O print mostrando a tabela de interfaces de rede e o disco de `512 GB`).
-4. **`04_apis_identidade.jpg`** (O print da seção de "Contas de serviço" e escopos de acesso).
-5. **`05_metadados_gerenciamento.jpg`** (O print da seção de administração e a tabela de metadados com `enable-osconfig`).
-6. **`06_servidor_web_ativo.jpg`** (Opcional: print da página web carregada no navegador ao acessar o IP `136.119.234.111`).
+**Página do Servidor Web Respondendo ao Acesso Externo:**
