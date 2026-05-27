@@ -42,16 +42,16 @@ O estado (`.tfstate`) do Terraform precisa ser compartilhado e mantido de forma 
 **Comandos Modernos (Recomendado pela Google):**
 ```bash
 # 1. Criar o bucket na região desejada
-gcloud storage buckets create gs://NOME_DO_SEU_BUCKET --location=us-central1
+gcloud storage buckets create gs://bucketdio --location=us-central1
 
 # 2. Habilitar o versionamento para maior segurança do estado
-gcloud storage buckets update gs://NOME_DO_SEU_BUCKET --versioning
+gcloud storage buckets update gs://bucketdio --versioning
 ```
 
 **Comandos Legados (Com gsutil):**
 ```bash
-gsutil mb -l us-central1 gs://NOME_DO_SEU_BUCKET
-gsutil versioning set on gs://NOME_DO_SEU_BUCKET
+gsutil mb -l us-central1 gs:/bucketdio
+gsutil versioning set on gs://bucketdio
 ```
 
 > [!TIP]
