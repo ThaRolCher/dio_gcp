@@ -84,13 +84,6 @@ Para obter a URL pública e acessar a aplicação no navegador, consulte o IP ex
 kubectl get service frontend-external
 ```
 
-> [!NOTE]
-> *Insira abaixo o print de tela do seu navegador exibindo a página da Online Boutique ativa:*
-> 
-> ![Online Boutique Ativa](images/03_online_boutique.png)
-
----
-
 ### Cenário B: Deploy do Manifesto Local Customizado (`hello-gke.yaml`)
 Se desejar implantar a aplicação de teste contida neste diretório:
 1. Certifique-se de estar no diretório do desafio e aplique o manifesto:
@@ -109,18 +102,9 @@ Se desejar implantar a aplicação de teste contida neste diretório:
 ### Passo 1: Verificar Cluster Ativo
 No Console da GCP, vá em **Kubernetes Engine** > **Clusters** para certificar-se de que o cluster `online-boutique` está com status verde (ativo).
 
-> [!NOTE]
-> *Insira abaixo o print do console GCP exibindo o Cluster GKE ativo no status verde:*
-> 
-> ![Cluster GKE Console](images/01_gke_cluster.png)
 
 ### Passo 2: Verificar Cargas de Trabalho
 No menu lateral do Kubernetes Engine, vá em **Cargas de Trabalho** (*Workloads*) para visualizar todas as réplicas dos Pods em execução.
-
-> [!NOTE]
-> *Insira abaixo o print exibindo o resultado do comando `kubectl get pods` no terminal confirmando a execução:*
-> 
-> ![Status dos Pods no Terminal](images/02_k8s_pods.png)
 
 ---
 
