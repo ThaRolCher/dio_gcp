@@ -95,17 +95,15 @@ gcloud run deploy mvp-5-integrador-roadmap \
 ### 1. Documentação Swagger Ativa (API Mastera)
 Abaixo está a interface interativa do Swagger no caminho `/docs`, gerada nativamente pelo FastAPI, comprovando que todos os métodos e esquemas da aplicação estão operacionais:
 
-![Swagger UI da API](images/01_swagger_docs.jpg)
 
 ### 2. URL Pública Gerada
-A URL gerada de forma segura com HTTPS pelo Cloud Run (`https://mvp-5-integrador-roadmap-697690976998.us-west1.run.app/docs`) respondendo de forma ultra rápida no navegador:
+A URL gerada de forma segura com HTTPS pelo Cloud Run (`https://mvp-5-integrador-roadmap-XXXXXXX.us-west1.run.app/docs`) respondendo de forma ultra rápida no navegador:
 
-![Acesso Público via Navegador](images/02_app_url.jpg)
+
 
 ### 3. Detalhes do Serviço no Console GCP
 Painel administrativo do **Cloud Run** sob o projeto **`projeto-rag-validacao`** na região **`us-west1`**, exibindo o histórico de builds de sucesso, gráficos de observabilidade, e a configuração de instâncias do auto-scaling:
 
-![Console do Cloud Run](images/03_cloud_run_console.jpg)
 
 ---
 
