@@ -22,6 +22,7 @@ Abaixo está o índice de todos os desafios concluídos neste repositório. Cada
 | **01** | **Organização de Pastas e Projetos (IAM)** | Modelagem e automação de estrutura hierárquica de recursos da GCP, separando ambientes de Produção e Testes, e aplicando permissões via Google Groups. | `Terraform` / `GCP IAM` / `Draw.io` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/01-organizacao-pastas-iam/README.md) |
 | **02** | **Exportação de Billing para o BigQuery** | Configuração do fluxo automático de exportação de dados de faturamento para análise analítica e FinOps através do BigQuery. | `GCP Billing` / `BigQuery` / `SQL` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/02-exportacao-billing-bigquery/README.md) |
 | **03** | **Dashboard Personalizado e Idioma** | Customização do painel de controle da GCP, fixação de atalhos no menu de navegação e ajuste de preferências regionais/idioma. | `GCP Console` / `Preferências` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/03-dashboard-personalizado-preferencias-idioma/README.md) |
+| **04** | **Dominando o GCP Cloud Shell** | Utilização da CLI gcloud no terminal integrado, exploração do Cloud Shell Editor e do recurso de visualização web (Web Preview). | `Cloud Shell` / `gcloud CLI` / `Linux` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/04-dominando-gcp-cloud-shell/README.md) |
 
 ---
 
