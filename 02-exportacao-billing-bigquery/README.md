@@ -82,9 +82,11 @@ Após salvar, a GCP levará de **24 a 48 horas** para começar a exportar os dad
 Você notará que novas tabelas com o formato `gcp_billing_export_v1_<ACCOUNT_ID>` serão geradas no dataset.
 
 > [!NOTE]
-> *Insira abaixo o print mostrando as tabelas geradas no BigQuery Studio após o período de maturação:*
+> **Tabelas Geradas (Standard Cost v1):**
+> ![Tabelas Geradas v1](images/gcp_billing_export_v1_01A392_205601_B488C9.jpg)
 > 
-> ![Tabelas Geradas no BigQuery](images/03_tabelas_geradas.png)
+> **Tabelas Geradas (Detailed Cost v2):**
+> ![Tabelas Geradas v2](images/gcp_billing_export_v2_01A392_205601_B488C9.png)
 
 ---
 
