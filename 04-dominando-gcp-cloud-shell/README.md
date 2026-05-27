@@ -29,7 +29,7 @@ O **Cloud Shell** é uma máquina virtual temporária (baseada em Debian Linux) 
 > [!NOTE]
 > *Insira abaixo o print de tela do seu Cloud Shell sendo aberto e inicializado no console:*
 > 
-> ![Abrir Cloud Shell](images/01_abrir_cloud_shell.png)
+> ![Abrir Cloud Shell](images/cloudshell%201.jpg)
 
 ---
 
@@ -58,9 +58,7 @@ gcloud config set compute/zone southamerica-east1-a
 ```
 
 > [!NOTE]
-> *Insira abaixo o print de tela do seu terminal após executar alguns desses comandos `gcloud`:*
-> 
-> ![Comandos do gcloud](images/02_comandos_gcloud.png)
+> ![Comandos do gcloud](images/cloudshell%202.jpg)
 
 ---
 
@@ -86,9 +84,11 @@ O Cloud Shell permite hospedar servidores web de teste na porta `8080` (e outras
 5. Para encerrar o servidor no terminal, digite `Ctrl + C`.
 
 > [!NOTE]
-> *Insira abaixo o print de tela do seu servidor Python rodando e exibindo os arquivos na aba do navegador através do Web Preview (ou o Editor do Cloud Shell aberto):*
+> **Terminal do Cloud Shell (Servidor Python ativo):**
+> ![Servidor Python 1](images/cloudshell%203%20servidor%20python%201.jpg)
 > 
-> ![Editor e Web Preview](images/03_editor_e_preview.png)
+> **Prévia Web renderizada no navegador (Web Preview):**
+> ![Servidor Python 2](images/cloudshell%203%20servidor%20python%202.jpg)
 
 ---
 

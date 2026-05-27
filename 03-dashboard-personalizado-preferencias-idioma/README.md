@@ -31,9 +31,7 @@ O Dashboard do GCP é a primeira tela exibida ao acessar o console. Ele funciona
    - Clique em **Concluído** (*Done*) no canto superior direito para fixar o layout personalizado.
 
 > [!NOTE]
-> *Insira abaixo o print de tela do seu Dashboard Inicial personalizado (por exemplo, com os cartões de Billing, Atividade e Status do Google Cloud organizados):*
-> 
-> ![Dashboard Personalizado](images/01_dashboard_customizado.png)
+> ![Dashboard Personalizado](images/Dashboard%20sendo%20personalizado.jpg)
 
 ---
 
@@ -50,9 +48,7 @@ Com centenas de serviços disponíveis na GCP, navegar pelo menu lateral pode se
 5. Para remover, basta clicar no alfinete novamente.
 
 > [!NOTE]
-> *Insira abaixo o print do seu menu lateral mostrando os seus serviços favoritos fixados no topo:*
-> 
-> ![Menu Lateral com Favoritos Fixados](images/02_menu_favoritos.png)
+> ![Menu Lateral com Favoritos Fixados](images/Recurso%20fixado%20do%20menu%20lateral.jpg)
 
 ---
 
@@ -75,9 +71,7 @@ Trabalhar com a GCP no idioma e formato regionais corretos evita erros de leitur
 5. Clique em **Salvar** (*Save*) para atualizar o console. A página será recarregada automaticamente com o novo idioma aplicado.
 
 > [!NOTE]
-> *Insira abaixo o print da sua tela de configurações de preferência mostrando onde o idioma/região foi definido:*
-> 
-> ![Configuração de Idioma e Região](images/03_preferencias_idioma.png)
+> ![Configuração de Idioma e Região](images/Prefer%C3%AAncia%20de%20idioma.jpg)
 
 ---
 
