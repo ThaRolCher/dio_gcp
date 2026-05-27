@@ -1,0 +1,23 @@
+# =========================================================================
+# ARQUIVO DE CONFIGURAÇÃO DO PIPELINE CLOUD BUILD (cloudbuild.yaml)
+# =========================================================================
+
+steps:
+  # 1. Inicializar o Terraform e configurar o backend remoto (GCS)
+  - id: 'tf init'
+    name: 'hashicorp/terraform:1.5.0'
+    dir: '05-pipeline-cicd-cloudbuild-terraform/terraform'
+    args: ['init']
+
+  # 2. Executar o Terraform Plan para planejar a infraestrutura
+  - id: 'tf plan'
+    name: 'hashicorp/terraform:1.5.0'
+    dir: '05-pipeline-cicd-cloudbuild-terraform/terraform'
+    args: ['plan']
+
+  # 3. Executar o Terraform Apply para aplicar as mudanças na GCP
+  # O parâmetro '-auto-approve' permite que o Cloud Build execute sem interação humana.
+  - id: 'tf apply'
+    name: 'hashicorp/terraform:1.5.0'
+    dir: '05-pipeline-cicd-cloudbuild-terraform/terraform'
+    args: ['apply', '-auto-approve']
