@@ -96,11 +96,6 @@ Com as regras de firewall ativas para a tag `http-server`, qualquer servidor web
 > **Página do Servidor Web Respondendo ao Acesso Externo:**
 > ![Servidor Web Ativo](images/06_servidor_web_ativo.jpg)
 
----
-
-## 📁 Orientações de Como Organizar Seus Prints
-
-Para que as imagens apareçam corretamente no seu GitHub como documentado acima, salve os prints que você tirou do console dentro da pasta **`06-vpc-vm-gcp/images/`** renomeando-os exatamente com os seguintes nomes de arquivos:
 
 1. **`01_lista_vms.jpg`** (O print mostrando a lista de VMs com o IP externo `136.119.234.111`).
 2. **`02_config_maquina.jpg`** (O print mostrando as especificações da máquina `n2-highmem-8` e as tags `http-server`).
