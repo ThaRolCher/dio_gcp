@@ -1,0 +1,2 @@
+# Este arquivo garante que a pasta vazia 'images' seja rastreada pelo Git.
+# Salve aqui seus prints do Cloud Build e do deploy do Terraform.

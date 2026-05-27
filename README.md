@@ -23,6 +23,7 @@ Abaixo está o índice de todos os desafios concluídos neste repositório. Cada
 | **02** | **Exportação de Billing para o BigQuery** | Configuração do fluxo automático de exportação de dados de faturamento para análise analítica e FinOps através do BigQuery. | `GCP Billing` / `BigQuery` / `SQL` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/02-exportacao-billing-bigquery/README.md) |
 | **03** | **Dashboard Personalizado e Idioma** | Customização do painel de controle da GCP, fixação de atalhos no menu de navegação e ajuste de preferências regionais/idioma. | `GCP Console` / `Preferências` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/03-dashboard-personalizado-preferencias-idioma/README.md) |
 | **04** | **Dominando o GCP Cloud Shell** | Utilização da CLI gcloud no terminal integrado, exploração do Cloud Shell Editor e do recurso de visualização web (Web Preview). | `Cloud Shell` / `gcloud CLI` / `Linux` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/04-dominando-gcp-cloud-shell/README.md) |
+| **05** | **Pipeline CI/CD com Cloud Build & Terraform** | Automação completa de infraestrutura como código (IaC) utilizando pipeline de CI/CD para provisionar VPC e VM na GCP via gatilhos do GitHub. | `Terraform` / `Cloud Build` / `CI/CD` | [Ver Desafio 📁](file:///c:/Users/Chericoni/DIO/dio_gcp/05-pipeline-cicd-cloudbuild-terraform/README.md) |
 
 ---
 
