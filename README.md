@@ -6,11 +6,10 @@ Aqui você encontrará a implementação em infraestrutura como código (IaC), m
 
 ---
 
-## 🧑‍💻 Perfil do Aluno
-
-- **Nome:** [Seu Nome Aqui]
-- **GitHub:** [@SeuUsuario](https://github.com/SeuUsuario)
-- **LinkedIn:** [Seu LinkedIn](https://linkedin.com/in/SeuLink)
+Aluna
+Thais Rolfsen Chericoni
+GitHub [@ThaRolCher](https://github.com/ThaRolCher)
+LinkedIn Thaís Chericoni](https://www.linkedin.com/in/thais-chericoni-34954930/)
 
 ---
 
